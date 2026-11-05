@@ -6,15 +6,13 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            // Splits vendor libraries into separate chunks by folder name
-            const packageName = id.toString().split('node_modules/')[1].split('/')[0];
-            return `vendor-${packageName}`;
-          }
+        manualChunks: {
+          // Explicitly separate core framework libraries into their own chunk
+          'react-vendor': ['react', 'react-dom'],
         },
       },
     },
+    // Safely adjust the warning limit for modern web applications
     chunkSizeWarningLimit: 1000,
   },
 });
