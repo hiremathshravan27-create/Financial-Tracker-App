@@ -7,12 +7,12 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          // Separates node_modules dependencies into a distinct chunk
           if (id.includes('node_modules')) {
             return 'vendor';
           }
         },
       },
     },
+    chunkSizeWarningLimit: 1000, // Raises the warning threshold to 1000 kB
   },
 });
