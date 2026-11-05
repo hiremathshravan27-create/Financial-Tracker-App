@@ -4,15 +4,16 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   build: {
+    // Raises the warning threshold to 1000 kB so the build logs stay clean
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
-        manualChunks: {
-          // Explicitly separate core framework libraries into their own chunk
-          'react-vendor': ['react', 'react-dom'],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
         },
       },
     },
-    // Safely adjust the warning limit for modern web applications
-    chunkSizeWarningLimit: 1000,
   },
 });
