@@ -8,11 +8,13 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            return 'vendor';
+            // Splits vendor libraries into separate chunks by folder name
+            const packageName = id.toString().split('node_modules/')[1].split('/')[0];
+            return `vendor-${packageName}`;
           }
         },
       },
     },
-    chunkSizeWarningLimit: 1000, // Raises the warning threshold to 1000 kB
+    chunkSizeWarningLimit: 1000,
   },
 });
