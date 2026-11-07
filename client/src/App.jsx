@@ -1,9 +1,8 @@
+
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// Lazy load your pages
-const Dashboard = lazy(() => import('./pages/Dashboard')); // Update path to match your actual pages
-const Transactions = lazy(() => import('./pages/Transactions'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
 
 function App() {
   return (
@@ -11,7 +10,7 @@ function App() {
       <Suspense fallback={<div className="text-center p-10">Loading...</div>}>
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/transactions" element={<Transactions />} />
+          <Route path="/transactions" element={<Dashboard />} />
         </Routes>
       </Suspense>
     </Router>
