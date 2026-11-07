@@ -26,7 +26,7 @@ export default function Dashboard() {
       const config = {
         headers: { Authorization: `Bearer ${user.token}` },
       };
-      const res = await axios.get('http://localhost:5000/api/transactions', config);
+      const res = await axios.get('https://financial-tracker-app-ypkt.onrender.com/api/transactions', config);
       setTransactions(res.data);
     } catch (err) {
       toast.error('Failed to fetch transactions');
@@ -38,7 +38,7 @@ export default function Dashboard() {
       const config = {
         headers: { Authorization: `Bearer ${user.token}` },
       };
-      await axios.delete(`http://localhost:5000/api/transactions/${id}`, config);
+      await axios.delete(`https://financial-tracker-app-ypkt.onrender.com/api/transactions/${id}`, config);
       toast.success('Transaction deleted');
       fetchTransactions();
     } catch (err) {

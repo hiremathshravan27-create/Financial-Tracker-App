@@ -16,7 +16,7 @@ export default function TransactionForm({ onTransactionAdded, user }) {
         headers: { Authorization: `Bearer ${user.token}` },
       };
       await axios.post(
-        'http://localhost:5000/api/transactions',
+        'https://financial-tracker-app-ypkt.onrender.com/api/transactions',
         { title, amount: Number(amount), type, category },
         config
       );
