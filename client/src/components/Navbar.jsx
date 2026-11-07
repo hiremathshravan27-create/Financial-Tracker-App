@@ -1,9 +1,17 @@
+
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { LogOut, Wallet, User as UserIcon } from 'lucide-react';
 
 export default function Navbar() {
   const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login', { replace: true });
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 text-white px-6 py-3.5">
@@ -26,7 +34,7 @@ export default function Navbar() {
           </div>
 
           <button
-            onClick={logout}
+            onClick={handleLogout}
             className="flex items-center space-x-1.5 text-xs font-medium bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 px-3.5 py-1.5 rounded-full transition duration-200 cursor-pointer"
           >
             <LogOut className="h-3.5 w-3.5" />
